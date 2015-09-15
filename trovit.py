@@ -22,10 +22,10 @@ def trovit(Job_Post): #
   br.set_cookiejar(cj)
   br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
   br.addheaders = [('User-agent', 'Chrome')]
-  br.open('http://jobs.trovit.co.in/index.php/cod.mytrovit_login_frm')
-  br.select_form(predicate=trovitjob)
+  br.open('http://jobs.trovit.co.in/index.php/cod.publish_your_ad_login/login.1')
+  br.select_form(nr = 0)
   br['email'] = Job_Post.login_id
-  br['pwd'] = Job_Post.password
+  br['password'] = Job_Post.password
   br.submit()
   while(True):
     try:

@@ -1,6 +1,6 @@
 import mechanize
 
-def hirist_post(Job_Post): #Job_Post
+def hirist_post(Job_Post): #Job_Post  
   br = mechanize.Browser()
   br.set_handle_equiv(True)
   br.set_handle_gzip(True)
@@ -15,6 +15,7 @@ def hirist_post(Job_Post): #Job_Post
   br['email'] = Job_Post.login_id
   br['password'] = Job_Post.password
   br.submit()
+  br.open('http://www.hirist.com/recruiter/jobpost.php')  
   br.select_form(name="jobPostFrm")
   br['subject'] = Job_Post.job_title
   br['otherslocation'] = Job_Post.city

@@ -1,6 +1,9 @@
 import mechanize
 import cookielib
 
+def passwordlogin(form):
+   return form.attrs.get('id', None) == 'passwordlogin'
+
 def newjob(form):
   return form.attrs.get('id', None) == 'newjob'
 
@@ -24,7 +27,7 @@ def hasjob_co(Job_Post): #Job_Post
    br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
    br.addheaders = [('User-agent', 'Chrome')]
    br.open('https://auth.hasgeek.com/login')
-   br.select_form(nr=1)
+   br.select_form(predicate = passwordlogin)
    br['username'] = Job_Post.login_id
    br['password'] = Job_Post.password
    br.submit()
@@ -53,7 +56,7 @@ def hasjob_co(Job_Post): #Job_Post
    br.select_form(nr=1)
    br.submit()
    br.select_form(nr=1)
-   br.find_control(type="checkbox").items[0].selected=True
+   br.find_control(type="checkbox").selected=True
    br.submit()
    #with open ("hasjob_result_page.txt", 'w') as f:
 #        f.write(response.read())
